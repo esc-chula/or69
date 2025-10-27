@@ -18,8 +18,8 @@ export default function Page(): JSX.Element {
                     {user.expEngSection ? (
                         <SubjectCard
                             section={user.expEngSection}
-                            subjectCode='5500111'
-                            subjectName='EXP ENG 1'
+                            subjectCode='5500112'
+                            subjectName='EXP ENG II'
                         />
                     ) : null}
                 </div>

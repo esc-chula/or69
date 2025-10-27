@@ -192,7 +192,7 @@ const getSubjects = async (
     const subjectsData = user.subjects;
     const expEngSection = user.expEngSection;
     if (!expEngSection) throw new Error('EXP ENG section not found');
-    const expEngSubject = await getSubjectsInfo('5500111');
+    const expEngSubject = await getSubjectsInfo('5500112');
 
     return groupSubjects
         .map(({ code, section }) => {

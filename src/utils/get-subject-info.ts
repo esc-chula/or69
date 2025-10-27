@@ -38,7 +38,7 @@ export const getSubjectsInfo = async (
 export const getExpEngSectionByStudentIndex = async (
     studentIndex: string
 ): Promise<Section> => {
-    const expEng = await getSubjectsInfo('5500111');
+    const expEng = await getSubjectsInfo('5500112');
 
     const found = expEng.sections.find((s) => {
         return (
