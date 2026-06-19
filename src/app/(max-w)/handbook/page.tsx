@@ -10,12 +10,12 @@ import Handbook5 from '@/assets/images/handbook/handbook5.png';
 function Header({ children }: { children: string }): JSX.Element {
     return (
         <div className='flex h-fit w-full gap-3'>
-            <div className='bg-primary w-fit'>
-                <h2 className='text-primary-foreground px-5 py-3 text-lg font-bold md:text-xl lg:px-10 lg:py-5 lg:text-2xl'>
+            <div className='w-fit bg-primary'>
+                <h2 className='px-5 py-3 text-lg font-bold text-primary-foreground md:text-xl lg:px-10 lg:py-5 lg:text-2xl'>
                     {children}
                 </h2>
             </div>
-            <div className='bg-primary w-3 lg:w-6' />
+            <div className='w-3 bg-primary lg:w-6' />
         </div>
     );
 }
@@ -23,7 +23,7 @@ function Header({ children }: { children: string }): JSX.Element {
 function Link({ href }: { href: string }): JSX.Element {
     return (
         <NextLink
-            className='text-primary font-semibold underline'
+            className='font-semibold text-primary underline'
             href={href}
             rel='noreferrer noopener'
             target='_blank'
@@ -37,7 +37,7 @@ export default function Handbook(): JSX.Element {
     return (
         <main className='mt-24 flex flex-col justify-center gap-8 pb-12 text-sm md:text-lg lg:mt-0 lg:pb-28 lg:text-2xl'>
             <NextLink className='absolute top-8' href='/'>
-                <BackIcon className='stroke-primary size-7 lg:hidden' />
+                <BackIcon className='size-7 stroke-primary lg:hidden' />
             </NextLink>
             <div className='mb-8 flex w-full flex-col items-center gap-6'>
                 <ESCLogoWithText className='lg:hidden' />
@@ -49,7 +49,7 @@ export default function Handbook(): JSX.Element {
                 <Header>การตรวจสอบตารางเรียน</Header>
                 <ol className='flex list-inside list-decimal flex-col gap-2 px-5'>
                     <li>
-                        เข้าเว็บไซต์ <Link href='https://or68.intania.org' />{' '}
+                        เข้าเว็บไซต์ <Link href='https://or69.intania.org' />{' '}
                         เพื่อตรวจสอบตารางเรียน
                     </li>
                     <li>
@@ -118,11 +118,11 @@ export default function Handbook(): JSX.Element {
                         <ol className='mt-4 flex list-inside list-decimal flex-col gap-2 pl-8 [counter-reset:section]'>
                             <li className="[counter-increment:section] marker:[content:counters(section,'.''.')]">
                                 สำหรับกลุ่มรายวิชา ให้นิสิตเปลี่ยนคำว่า{' '}
-                                <span className='text-primary font-bold underline'>
+                                <span className='font-bold text-primary underline'>
                                     เท่านั้น
                                 </span>{' '}
                                 เป็น{' '}
-                                <span className='text-primary font-bold underline'>
+                                <span className='font-bold text-primary underline'>
                                     G
                                 </span>{' '}
                                 และใส่รหัสกลุ่มรายวิชาบริเวณสีแดง <br />
@@ -130,7 +130,7 @@ export default function Handbook(): JSX.Element {
                             <li className="[counter-increment:section] marker:[content:counters(section,'.')'.']">
                                 สำหรับรายวิชา EXP ENG I (5500111)
                                 ให้นิสิตกรอกตอนเรียนของตนเองหน้าช่อง{' '}
-                                <span className='text-primary font-semibold underline'>
+                                <span className='font-semibold text-primary underline'>
                                     เท่านั้น
                                 </span>{' '}
                                 บริเวณสีน้ำเงินและเขียว ตามลำดับ <br />
