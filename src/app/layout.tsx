@@ -8,7 +8,7 @@ import { UserProvider } from '@/contexts/user-context';
 import '@/styles/globals.css';
 
 export const metadata: Metadata = {
-    title: 'OR68',
+    title: 'OR69',
 };
 
 export default function RootLayout({

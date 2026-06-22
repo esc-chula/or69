@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import '@/styles/globals.css';
 
 export const metadata: Metadata = {
-    title: 'OR68',
+    title: 'OR69',
 };
 
 export default function RootLayout({

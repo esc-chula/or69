@@ -107,7 +107,7 @@ export default function Page(): JSX.Element {
                         ✨<br />
                         👉
                         <Link
-                            className='z-50 underline text-primary font-bold'
+                            className='z-50 font-bold text-primary underline'
                             href='https://bit.ly/nisit109-entry-form'
                             rel='noopener noreferrer'
                             target='_blank'
@@ -141,7 +141,7 @@ export default function Page(): JSX.Element {
                     <Image alt='' src={Calendar2} />
                     <p className='mb-12 mt-4 px-2 text-start'>
                         📣 กำหนดการการลงทะเบียนนิสิตใหม่ ภาคการศึกษาต้น
-                        ปีการศึกษา 2568 ⚙️📚 [รหัส 68]
+                        ปีการศึกษา 2569 ⚙️📚 [รหัส 69]
                     </p>
                 </Link>
             </div>
