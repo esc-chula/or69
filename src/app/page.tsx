@@ -43,8 +43,8 @@ export default function LandingPage(): JSX.Element {
                 {!isSystemOpen ? (
                     <p className='text-center text-base text-muted-foreground md:text-lg'>
                         <strong>ขออภัยระบบยังไม่เปิดให้ใช้งาน</strong> <br />
-                        ระบบนี้จะเปิดให้ใช้งานในวันพบอาจารย์และลงทะเบียนเรียน (8
-                        กรกฎาคม 2569) เป็นต้นไป <br />
+                        ระบบนี้จะเปิดให้ใช้งานในวันที่ 6 กรกฎาคม 2569 เป็นต้นไป
+                        <br />
                         หากระบบเปิดให้ใช้งานแล้วจะมีการแจ้งให้ทราบผ่านช่องทางต่าง
                         ๆ ของกวศ.อีกครั้ง
                     </p>
