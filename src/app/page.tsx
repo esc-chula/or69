@@ -8,6 +8,7 @@ import { Label } from '@/components/ui/label';
 import { useToast } from '@/components/ui/use-toast';
 import { cn } from '@/lib/utils';
 import { useUser } from '@/contexts/user-context';
+import { cohort } from '@/config/cohort';
 import backgroundImage from '@/assets/backgrounds/imageBG.png';
 import LandingPageBG from '@/assets/backgrounds/landing-page-bg';
 
@@ -29,7 +30,7 @@ export default function LandingPage(): JSX.Element {
         }
     };
 
-    const isSystemOpen = true; // Change this to true when the system is open for use
+    const isSystemOpen = cohort.isSystemOpen;
 
     return (
         <main className='flex min-h-dvh w-full items-center justify-center'>
@@ -43,7 +44,8 @@ export default function LandingPage(): JSX.Element {
                 {!isSystemOpen ? (
                     <p className='text-center text-base text-muted-foreground md:text-lg'>
                         <strong>ขออภัยระบบยังไม่เปิดให้ใช้งาน</strong> <br />
-                        ระบบนี้จะเปิดให้ใช้งานในวันที่ 6 กรกฎาคม 2569 เป็นต้นไป
+                        ระบบนี้จะเปิดให้ใช้งานในวันที่{' '}
+                        {cohort.systemOpenDate} เป็นต้นไป
                         <br />
                         หากระบบเปิดให้ใช้งานแล้วจะมีการแจ้งให้ทราบผ่านช่องทางต่าง
                         ๆ ของกวศ.อีกครั้ง

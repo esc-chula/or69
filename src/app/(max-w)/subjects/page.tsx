@@ -4,6 +4,7 @@ import Notation from '@/components/subjects/notation';
 import GroupSubject from '@/components/subjects/group-subject';
 import SubjectCard from '@/components/subjects/subject-card';
 import CedtNotice from '@/components/subjects/cedt-notice';
+import { cohort } from '@/config/cohort';
 
 export default function Page(): JSX.Element {
     const { user } = useUser();
@@ -14,20 +15,21 @@ export default function Page(): JSX.Element {
                 วิชาที่ต้องลงทะเบียน
             </h1>
             <div className='my-8 flex flex-col justify-between gap-16 md:flex-row'>
-                {user.student?.program ===
-                'วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล' ? (
+                {user.student?.program === cohort.cedtProgram ? (
                     <CedtNotice />
                 ) : (
                     <>
                         <div className='flex w-full flex-col gap-6'>
-                            <GroupSubject
-                                groupCode={user.group?.groupCode || ''}
-                            />
+                            {cohort.showGroupSubject ? (
+                                <GroupSubject
+                                    groupCode={user.group?.groupCode || ''}
+                                />
+                            ) : null}
                             {user.expEngSection ? (
                                 <SubjectCard
                                     section={user.expEngSection}
-                                    subjectCode='5500111'
-                                    subjectName='EXP ENG I'
+                                    subjectCode={cohort.expEngSubjectCode}
+                                    subjectName={cohort.expEngSubjectName}
                                 />
                             ) : null}
                         </div>

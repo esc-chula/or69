@@ -1,6 +1,9 @@
+import { cohort } from '@/config/cohort';
+
 export const validateStudentId = (studentId: string): boolean => {
-    // starts with "683", then digit exactly 5 times, ends with "21"
-    const pattern = /^683\d{5}21$/;
+    const pattern = new RegExp(
+        `^${cohort.studentIdPrefix}\\d{5}${cohort.studentIdSuffix}$`
+    );
     return pattern.test(studentId);
 };
 

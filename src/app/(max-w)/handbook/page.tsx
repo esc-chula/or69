@@ -2,6 +2,7 @@ import Image from 'next/image';
 import NextLink from 'next/link';
 import { ESCLogoWithText } from '@/components/esc';
 import { BackIcon } from '@/assets/icons/back';
+import { cohort } from '@/config/cohort';
 import Handbook2 from '@/assets/images/handbook/handbook2.png';
 import Handbook3 from '@/assets/images/handbook/handbook3.png';
 import Handbook4 from '@/assets/images/handbook/handbook4.png';
@@ -58,7 +59,8 @@ export default function Handbook(): JSX.Element {
                     </li>
                     <li>
                         โดยจะมีรหัสวิชาสองชุดในหัวข้อ &quot;วิชาลงทะเบียน&quot;
-                        คือรหัสกลุ่มรายวิชา และรหัสรายวิชา EXP ENG I
+                        คือรหัสกลุ่มรายวิชา และรหัสรายวิชา{' '}
+                        {cohort.expEngSubjectName}{' '}
                         ซึ่งนิสิตจะต้องลงทะเบียนเรียนตามรหัส
                         และตอนเรียนที่กำหนดเท่านั้น
                     </li>
@@ -128,7 +130,8 @@ export default function Handbook(): JSX.Element {
                                 และใส่รหัสกลุ่มรายวิชาบริเวณสีแดง <br />
                             </li>
                             <li className="[counter-increment:section] marker:[content:counters(section,'.')'.']">
-                                สำหรับรายวิชา EXP ENG I (5500111)
+                                สำหรับรายวิชา {cohort.expEngSubjectName} (
+                                {cohort.expEngSubjectCode})
                                 ให้นิสิตกรอกตอนเรียนของตนเองหน้าช่อง{' '}
                                 <span className='font-semibold text-primary underline'>
                                     เท่านั้น

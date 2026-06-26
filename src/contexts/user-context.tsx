@@ -17,6 +17,7 @@ import {
     getSubjectsInfo,
 } from '@/utils/get-subject-info';
 import { getGroupInfo } from '@/utils/get-group-info';
+import { cohort } from '@/config/cohort';
 
 export interface UserContextType {
     user: {
@@ -56,8 +57,7 @@ function UserProvider({
 
                 const teacherData = await getTeacherInfo(studentData.index);
                 if (
-                    studentData.program !==
-                    'วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล'
+                    studentData.program !== cohort.cedtProgram
                 ) {
                     const groupData = await getGroupInfo(studentData.index);
                     const subjectsData = await Promise.all(

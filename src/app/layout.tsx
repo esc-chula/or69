@@ -7,8 +7,10 @@ import { NavTop, NavBottom } from '@/components/nav';
 import { UserProvider } from '@/contexts/user-context';
 import '@/styles/globals.css';
 
+import { cohort } from '@/config/cohort';
+
 export const metadata: Metadata = {
-    title: 'OR69',
+    title: cohort.appName,
 };
 
 export default function RootLayout({

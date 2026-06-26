@@ -1,3 +1,5 @@
+import { cohort } from '@/config/cohort';
+
 export default function Notation(): JSX.Element {
     return (
         <div className='h-full shrink-0 rounded-2xl bg-background p-5 shadow-lg max-md:w-full md:w-80'>
@@ -7,13 +9,16 @@ export default function Notation(): JSX.Element {
                     นิสิตทุกคนจะต้องลงทะเบียนเรียนเป็นแบบรหัสกลุ่มรายวิชาตามรหัสกลุ่มวิชาที่นิสิตได้รับเท่านั้น
                 </li>
                 <li>
-                    นิสิตทุกคนต้องลงทะเบียนเรียนรายวิชา 5500111 EXP ENG I
+                    นิสิตทุกคนต้องลงทะเบียนเรียนรายวิชา{' '}
+                    {cohort.expEngSubjectCode} {cohort.expEngSubjectName}{' '}
                     เพิ่มอีก 1 รายวิชา ตามตอนเรียนที่กำหนดให้เท่านั้น
                 </li>
                 <li>
                     นิสิตที่ไม่ปฏิบัติตามข้อ 1 หรือข้อ 2 หากคณะฯ
                     ตรวจสอบพบภายหลังจะดำเนินการ
-                    <span className='font-semibold'>แจ้งถอนรายวิชา (W)</span>
+                    <span className='font-semibold'>
+                        แจ้งถอนรายวิชา (W)
+                    </span>{' '}
                     ไปยังสำนักงานทะเบียนประมวลผล
                 </li>
             </ol>

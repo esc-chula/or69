@@ -8,6 +8,7 @@ import { useUser } from '@/contexts/user-context';
 import TimeTable from '@/components/schedule/timetable';
 import DowloadButton from '@/components/schedule/dowload-button';
 import { getSubjectsInfo } from '@/utils/get-subject-info';
+import { cohort } from '@/config/cohort';
 import { takeScreenshot } from '@/utils/take-screenshot';
 import { BaseSubjectCardContent } from '@/components/schedule/subject-card';
 import Map from '@/components/schedule/map';
@@ -89,7 +90,7 @@ export default function Page(): JSX.Element {
         return overlap;
     };
 
-    if (user.student?.program === 'วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล') {
+    if (user.student?.program === cohort.cedtProgram) {
         return (
             <div className='flex w-full flex-col items-center gap-16 pb-16 md:pb-0'>
                 <section className='flex w-full max-w-6xl flex-col gap-2 sm:px-4'>
@@ -206,7 +207,7 @@ const getSubjects = async (
     const subjectsData = user.subjects;
     const expEngSection = user.expEngSection;
     if (!expEngSection) throw new Error('EXP ENG section not found');
-    const expEngSubject = await getSubjectsInfo('5500111');
+    const expEngSubject = await getSubjectsInfo(cohort.expEngSubjectCode);
 
     return groupSubjects
         .map(({ code, section }) => {

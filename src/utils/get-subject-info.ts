@@ -1,4 +1,5 @@
 import type { Section, Subject } from '@/types/subject';
+import { cohort } from '@/config/cohort';
 import { fetcher } from './data-fetcher';
 import { validateSubjectCode } from './validator';
 
@@ -38,7 +39,7 @@ export const getSubjectsInfo = async (
 export const getExpEngSectionByStudentIndex = async (
     studentIndex: string
 ): Promise<Section> => {
-    const expEng = await getSubjectsInfo('5500111');
+    const expEng = await getSubjectsInfo(cohort.expEngSubjectCode);
 
     const found = expEng.sections.find((s) => {
         return (
