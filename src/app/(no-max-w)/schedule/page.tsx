@@ -11,6 +11,7 @@ import { getSubjectsInfo } from '@/utils/get-subject-info';
 import { takeScreenshot } from '@/utils/take-screenshot';
 import { BaseSubjectCardContent } from '@/components/schedule/subject-card';
 import Map from '@/components/schedule/map';
+import CedtNotice from '@/components/subjects/cedt-notice';
 
 export default function Page(): JSX.Element {
     const { user } = useUser();
@@ -87,6 +88,19 @@ export default function Page(): JSX.Element {
 
         return overlap;
     };
+
+    if (user.student?.program === 'วิศวกรรมคอมพิวเตอร์และเทคโนโลยีดิจิทัล') {
+        return (
+            <div className='flex w-full flex-col items-center gap-16 pb-16 md:pb-0'>
+                <section className='flex w-full max-w-6xl flex-col gap-2 sm:px-4'>
+                    <h1 className='text-center text-4xl font-semibold sm:mb-10'>
+                        ตารางเรียน
+                    </h1>
+                    <CedtNotice />
+                </section>
+            </div>
+        );
+    }
 
     return (
         <div className='flex w-full flex-col items-center gap-16 pb-16 md:pb-0'>
@@ -192,7 +206,7 @@ const getSubjects = async (
     const subjectsData = user.subjects;
     const expEngSection = user.expEngSection;
     if (!expEngSection) throw new Error('EXP ENG section not found');
-    const expEngSubject = await getSubjectsInfo('5500112');
+    const expEngSubject = await getSubjectsInfo('5500111');
 
     return groupSubjects
         .map(({ code, section }) => {

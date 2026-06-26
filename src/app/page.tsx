@@ -29,7 +29,7 @@ export default function LandingPage(): JSX.Element {
         }
     };
 
-    const isSystemOpen = false; // Change this to true when the system is open for use
+    const isSystemOpen = true; // Change this to true when the system is open for use
 
     return (
         <main className='flex min-h-dvh w-full items-center justify-center'>

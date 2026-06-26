@@ -32,9 +32,9 @@ export default function RootLayout({
                 </UserProvider>
                 <Toaster />
             </body>
-            <GoogleAnalytics
+            {/* <GoogleAnalytics
                 gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID ?? ''}
-            />
+            /> */}
         </html>
     );
 }
