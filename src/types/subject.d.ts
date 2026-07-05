@@ -8,8 +8,8 @@ export interface Class {
 
 export interface Section {
     section: number;
-    studentStart: number;
-    studentEnd: number;
+    studentStart?: number;
+    studentEnd?: number;
     classes: Class[];
 }
 
