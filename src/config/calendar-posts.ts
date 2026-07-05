@@ -16,19 +16,19 @@ export interface CalendarPost {
 }
 
 export const calendarPosts: CalendarPost[] = [
-    {
-        instagramUrl:
-            'https://www.instagram.com/p/DLrvY20MUxD/?igsh=MnE2dm0xc2NqYTI2',
-        images: [CalendarCarousel1, CalendarCarousel2, CalendarCarousel3],
-        scrollable: true,
-        caption:
-            `📍 ขอเชิญชวนให้นิสิตใหม่ Intania ${cohort.intania} ทุกคนเข้ากลุ่ม Facebook และ LINE OpenChat เพื่อติดตามข่าวสาร ประกาศ และกิจกรรมต่าง ๆ ภายในวิศวฯ จุฬาฯ กันนะ\n\n` +
-            `🚨 ชาว Intania ${cohort.intania} ทุกคนอย่าลืมกรอกแบบฟอร์มนิสิตใหม่ก่อนที่จะขอเข้ากลุ่มกันด้วยนะ ✨\n👉`,
-        actionLink: {
-            url: 'https://bit.ly/nisit109-entry-form',
-            label: 'https://bit.ly/nisit109-entry-form',
-        },
-    },
+    // {
+    //     instagramUrl:
+    //         'https://www.instagram.com/p/DLrvY20MUxD/?igsh=MnE2dm0xc2NqYTI2',
+    //     images: [CalendarCarousel1, CalendarCarousel2, CalendarCarousel3],
+    //     scrollable: true,
+    //     caption:
+    //         `📍 ขอเชิญชวนให้นิสิตใหม่ Intania ${cohort.intania} ทุกคนเข้ากลุ่ม Facebook และ LINE OpenChat เพื่อติดตามข่าวสาร ประกาศ และกิจกรรมต่าง ๆ ภายในวิศวฯ จุฬาฯ กันนะ\n\n` +
+    //         `🚨 ชาว Intania ${cohort.intania} ทุกคนอย่าลืมกรอกแบบฟอร์มนิสิตใหม่ก่อนที่จะขอเข้ากลุ่มกันด้วยนะ ✨\n👉`,
+    //     actionLink: {
+    //         url: 'https://bit.ly/nisit109-entry-form',
+    //         label: 'https://bit.ly/nisit109-entry-form',
+    //     },
+    // },
     {
         instagramUrl: 'https://www.instagram.com/p/DZ4UYDEElbb/?img_index=1',
         images: [activityImage],

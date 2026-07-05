@@ -42,6 +42,10 @@ export const getExpEngSectionByStudentIndex = async (
     const expEng = await getSubjectsInfo(cohort.expEngSubjectCode);
 
     const found = expEng.sections.find((s) => {
+        if (s.studentStart === undefined || s.studentEnd === undefined) {
+            return false;
+        }
+
         return (
             s.studentStart <= parseInt(studentIndex) &&
             parseInt(studentIndex) <= s.studentEnd

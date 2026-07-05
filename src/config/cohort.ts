@@ -15,7 +15,7 @@ export const cohort = {
     intania: 110,
     academicYearTH: 2569,
     academicYearEN: 2026,
-    studentIdPrefix: '683',
+    studentIdPrefix: '693',
     studentIdSuffix: '21',
     isSystemOpen: true,
     systemOpenDate: '6 กรกฎาคม 2569',
