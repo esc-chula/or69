@@ -16,7 +16,7 @@ export interface CalendarPost {
 export const calendarPosts: CalendarPost[] = [
     {
         instagramUrl:
-            'https://www.instagram.com/p/DLrvY20MUxD/?igsh=MnE2dm0xc2NqYTI2',
+            'https://www.instagram.com/p/DacNEcYy_PC/',
         images: [openchatImage],
         scrollable: false,
         caption:
