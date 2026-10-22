@@ -4,7 +4,7 @@ This file provides guidance to Codex (claude.ai/code) when working with code in 
 
 ## Project
 
-Intania OR website: a Next.js 14 (App Router) site for incoming first-year students of the Faculty of Engineering, Chulalongkorn University (run by ESC / กวศ.). A student enters their student ID and sees their profile, advisor, subjects, timetable, faculty calendar, and shared classes with friends. UI copy is Thai.
+Intania OR website: a Next.js 14 (App Router) site for incoming first-year students of the Faculty of Engineering, Chulalongkorn University (run by ESC / กวศ.). A student enters their student ID and sees their profile, advisor, subjects, timetable, faculty announcements, and shared classes with friends. UI copy is Thai.
 
 ## Commands
 
@@ -53,7 +53,7 @@ CEDT students (`cohort.cedtProgram`) skip the group and subject lookups. The sub
 Content that changes each year or semester lives in `src/config/`. Change it there rather than hardcoding it in pages:
 
 - `cohort.ts`: batch number, academic year, the student ID regex prefix/suffix (used by `validateStudentId`), the `isSystemOpen` toggle and open date shown on the landing page, the current `semester`, and from that the EXP ENG subject code/name and `showGroupSubject`.
-- `calendar-posts.ts`: Instagram posts and images for `/calendar` (images are in `src/assets/images/calendar/`).
+- `announcement-posts.ts`: Instagram posts and images for `/announcement` (images are in `src/assets/images/announcement/`).
 - `map-markers.ts`: building markers on the schedule page map.
 
 ### Layout
