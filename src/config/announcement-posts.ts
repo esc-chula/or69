@@ -1,10 +1,10 @@
 import type { StaticImageData } from 'next/image';
 import { cohort } from '@/config/cohort';
-import openchatImage from '@/assets/images/calendar/69_openchat.jpg';
-import activityImage from '@/assets/images/calendar/69_calendar.jpg';
-import registrationImage from '@/assets/images/calendar/69_agenda.jpg';
+import openchatImage from '@/assets/images/announcement/69_openchat.jpg';
+import activityImage from '@/assets/images/announcement/69_calendar.jpg';
+import registrationImage from '@/assets/images/announcement/69_agenda.jpg';
 
-export interface CalendarPost {
+export interface AnnouncementPost {
     instagramUrl: string;
     images: StaticImageData[];
     scrollable: boolean;
@@ -13,7 +13,7 @@ export interface CalendarPost {
     actionLink?: { url: string; label: string };
 }
 
-export const calendarPosts: CalendarPost[] = [
+export const announcementPosts: AnnouncementPost[] = [
     {
         instagramUrl:
             'https://www.instagram.com/p/DacNEcYy_PC/',
