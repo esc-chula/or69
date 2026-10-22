@@ -1,8 +1,10 @@
 import { cohort } from '@/config/cohort';
 
 export const validateStudentId = (studentId: string): boolean => {
+    // any of the whitelisted prefixes, then any digit exactly 5 times, then the suffix
+    const prefixes = cohort.studentIdPrefixes.join('|');
     const pattern = new RegExp(
-        `^${cohort.studentIdPrefix}\\d{5}${cohort.studentIdSuffix}$`
+        `^(?:${prefixes})\\d{5}${cohort.studentIdSuffix}$`
     );
     return pattern.test(studentId);
 };
