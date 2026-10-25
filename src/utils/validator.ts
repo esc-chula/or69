@@ -1,11 +1,19 @@
 import { cohort } from '@/config/cohort';
 
+const STUDENT_ID_LENGTH = 10;
+
 export const validateStudentId = (studentId: string): boolean => {
-    // any of the whitelisted prefixes, then any digit exactly 5 times, then the suffix
-    const prefixes = cohort.studentIdPrefixes.join('|');
-    const pattern = new RegExp(
-        `^(?:${prefixes})\\d{5}${cohort.studentIdSuffix}$`
-    );
+    // any of the whitelisted prefixes, then enough digits to make 10 in total, then the suffix
+    const prefixes = cohort.studentIdPrefixes
+        .map((prefix) => {
+            const digits =
+                STUDENT_ID_LENGTH -
+                prefix.length -
+                cohort.studentIdSuffix.length;
+            return `${prefix}\\d{${digits}}`;
+        })
+        .join('|');
+    const pattern = new RegExp(`^(?:${prefixes})${cohort.studentIdSuffix}$`);
     return pattern.test(studentId);
 };
 
