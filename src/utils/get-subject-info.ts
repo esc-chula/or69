@@ -3,16 +3,14 @@ import { cohort } from '@/config/cohort';
 import { fetcher } from './data-fetcher';
 import { validateSubjectCode } from './validator';
 
-export const getSubjectsInfo = async (
+// runs on the server in /api/subjects/[subjectCode]
+export const findSubjectByCode = (
+    subjects: Subject[],
     subjectCode: string
-): Promise<Subject> => {
+): Subject => {
     if (!validateSubjectCode(subjectCode)) {
         throw new Error('Invalid subject code');
     }
-
-    const subjects = await fetcher<Subject[]>(
-        `${process.env.NEXT_PUBLIC_SUBJECTS}`
-    );
 
     const subject = subjects.find((s) => s.code === subjectCode);
     if (!subject) {
@@ -32,6 +30,18 @@ export const getSubjectsInfo = async (
             sections: mergedSections,
         };
     }
+
+    return subject;
+};
+
+export const getSubjectsInfo = async (
+    subjectCode: string
+): Promise<Subject> => {
+    if (!validateSubjectCode(subjectCode)) {
+        throw new Error('Invalid subject code');
+    }
+
+    const subject = await fetcher<Subject>(`/api/subjects/${subjectCode}`);
 
     return subject;
 };

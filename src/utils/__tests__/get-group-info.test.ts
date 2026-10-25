@@ -1,15 +1,7 @@
-import {
-    afterEach,
-    beforeEach,
-    describe,
-    expect,
-    type Mock,
-    test,
-    vi,
-} from 'vitest';
+import { afterEach, describe, expect, test, vi } from 'vitest';
 import type { Group } from '@/types/group';
 import { fetcher } from '../data-fetcher';
-import { getGroupInfo } from '../get-group-info';
+import { findGroupByStudentIndex, getGroupInfo } from '../get-group-info';
 
 const groups: Group[] = [
     {
@@ -23,17 +15,42 @@ const groups: Group[] = [
             },
         ],
     },
+    {
+        index: '5',
+        groupCode: '2198375',
+        range: { start: 100, end: 199 },
+        subjects: [
+            {
+                code: '2199001',
+                section: 2,
+            },
+        ],
+    },
 ];
 
 vi.mock('../data-fetcher');
 
-describe('getGroupsInfo', () => {
-    beforeEach(() => {
-        vi.mocked(fetcher).mockImplementation(async () =>
-            Promise.resolve(groups)
+describe('findGroupByStudentIndex', () => {
+    test('returns the group whose range covers the student index', () => {
+        expect(findGroupByStudentIndex(groups, '99')).toEqual(groups[0]);
+        expect(findGroupByStudentIndex(groups, '100')).toEqual(groups[1]);
+    });
+
+    test('throws an error if the group is not found', () => {
+        expect(() => findGroupByStudentIndex(groups, '3999')).toThrow(
+            'Group not found'
         );
     });
 
+    test('throws an error if the student index is invalid', () => {
+        // '5abc' would otherwise parse as 5
+        expect(() => findGroupByStudentIndex(groups, '5abc')).toThrow(
+            'Invalid student index'
+        );
+    });
+});
+
+describe('getGroupInfo', () => {
     afterEach(() => {
         vi.resetAllMocks();
     });
@@ -54,20 +71,14 @@ describe('getGroupsInfo', () => {
         await expect(getGroupInfo('100000000')).rejects.toThrow(
             'Invalid student index'
         );
+
+        expect(fetcher).not.toHaveBeenCalled();
     });
 
-    test('throws an error if the group is not found', async () => {
-        global.fetch = vi.fn(() =>
-            Promise.resolve({
-                json: () => Promise.resolve(groups),
-            })
-        ) as Mock;
+    test('fetches the group from the groups API route', async () => {
+        vi.mocked(fetcher).mockResolvedValueOnce(groups[0]);
 
-        await expect(getGroupInfo('3999')).rejects.toThrow('Group not found');
-    });
-
-    test('returns a group', async () => {
-        const group1 = await getGroupInfo('99');
-        expect(group1).toEqual(groups[0]);
+        await expect(getGroupInfo('99')).resolves.toEqual(groups[0]);
+        expect(fetcher).toHaveBeenCalledWith('/api/groups/99');
     });
 });
