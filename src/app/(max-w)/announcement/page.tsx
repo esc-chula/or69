@@ -9,7 +9,7 @@ import {
     type CarouselApi,
 } from '@/components/ui/carousel';
 import { Button } from '@/components/ui/button';
-import { calendarPosts } from '@/config/calendar-posts';
+import { announcementPosts } from '@/config/announcement-posts';
 import { FacebookIcon } from '@/assets/icons/facebook';
 import { InstagramIcon } from '@/assets/icons/instagram';
 
@@ -38,10 +38,10 @@ export default function Page(): JSX.Element {
     return (
         <main className='flex flex-col items-center'>
             <h2 className='mb-12 text-center text-2xl font-semibold md:text-4xl'>
-                ปฏิทินคณะ
+                ข่าวประชาสัมพันธ์
             </h2>
             <div className='grid w-full max-w-sm grid-cols-1 gap-5 md:max-w-none md:grid-cols-3'>
-                {calendarPosts.map((post, index) => (
+                {announcementPosts.map((post, index) => (
                     <Link
                         className={post.className ?? 'text-base'}
                         href={post.instagramUrl}

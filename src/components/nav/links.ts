@@ -38,8 +38,8 @@ export const links: Link[] = [
         needStroke: true,
     },
     {
-        href: '/calendar',
-        label: 'ปฏิทินคณะ',
+        href: '/announcement',
+        label: 'ข่าวประชาสัมพันธ์',
         icon: CalendarIcon,
         needFill: true,
         needStroke: true,

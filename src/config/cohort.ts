@@ -5,20 +5,20 @@ const EXP_ENG_SUBJECTS = {
 
 const SHOW_GROUP_SUBJECT = {
     1: true,
-    2: false,
+    2: true,
 } as const;
 
-const semester = 1;
+const semester = 2;
 
 export const cohort = {
     batch: 69,
     intania: 110,
     academicYearTH: 2569,
     academicYearEN: 2026,
-    studentIdPrefix: '693',
+    studentIdPrefixes: ['693', '68301555'],
     studentIdSuffix: '21',
     isSystemOpen: true,
-    systemOpenDate: '6 กรกฎาคม 2569',
+    systemOpenDate: '26 ตุลาคม 2569',
     appName: 'OR69',
     semester,
     showGroupSubject: SHOW_GROUP_SUBJECT[semester],
