@@ -2,16 +2,14 @@ import type { Teacher } from '@/types/teacher';
 import { fetcher } from './data-fetcher';
 import { validateStudentIndex } from './validator';
 
-export const getTeacherInfo = async (
+// runs on the server in /api/teachers/[studentIndex]
+export const findTeacherByStudentIndex = (
+    teachers: Teacher[],
     studentIndex: string
-): Promise<Teacher> => {
+): Teacher => {
     if (!validateStudentIndex(studentIndex)) {
         throw new Error('Invalid student index');
     }
-
-    const teachers = await fetcher<Teacher[]>(
-        `${process.env.NEXT_PUBLIC_TEACHERS}`
-    );
 
     const teacherData = teachers.find(
         (teacher: Teacher) =>
@@ -22,6 +20,18 @@ export const getTeacherInfo = async (
     if (!teacherData) {
         throw new Error('Teacher not found');
     }
+
+    return teacherData;
+};
+
+export const getTeacherInfo = async (
+    studentIndex: string
+): Promise<Teacher> => {
+    if (!validateStudentIndex(studentIndex)) {
+        throw new Error('Invalid student index');
+    }
+
+    const teacherData = await fetcher<Teacher>(`/api/teachers/${studentIndex}`);
 
     return teacherData;
 };

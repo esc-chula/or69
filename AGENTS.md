@@ -28,14 +28,18 @@ Copy `.env.local.example` to `.env.local` and fill in the data URLs before runni
 
 ### Data flow
 
-There is no database. All data is JSON arrays at external URLs set through env vars:
+There is no database. All data is JSON arrays at external URLs set through env vars. All four are **server-only** (no `NEXT_PUBLIC_` prefix, so Next.js never bundles them for the browser). Each one is read only by an edge route that returns a single record, so neither the URLs nor the full data sets reach the client:
 
-- `OR_STUDENTS` is **server-only**. It is read only by the edge route `src/app/api/students/[studentId]/route.ts`, which returns a single student. That way the full student roster never reaches the client.
-- `NEXT_PUBLIC_GROUPS`, `NEXT_PUBLIC_SUBJECTS` and `NEXT_PUBLIC_TEACHERS` are fetched **directly from the browser** through `src/utils/data-fetcher.ts` (`fetch` with `cache: 'force-cache'`).
+- `OR_STUDENTS`: `src/app/api/students/[studentId]/route.ts`
+- `OR_GROUPS`: `src/app/api/groups/[studentIndex]/route.ts`
+- `OR_TEACHERS`: `src/app/api/teachers/[studentIndex]/route.ts`
+- `OR_SUBJECTS`: `src/app/api/subjects/[subjectCode]/route.ts`
 
-A student's `index`, not their ID, is the key for everything else. `get-group-info`, `get-teacher-info` and `getExpEngSectionByStudentIndex` each look the student up by checking whether the index falls in a `range.start..range.end` (or `studentStart..studentEnd`) window. `getSubjectsInfo` merges duplicate subject rows that share a `code` into one subject with all their sections combined.
+The groups, teachers and subjects routes share `src/utils/respond-with-item.ts`. The browser calls the routes through the `get-*-info` utils and `src/utils/data-fetcher.ts` (`fetch` with `cache: 'force-cache'`). The fetcher turns any 404 into `Data not found`, so the error message in a route's JSON body never reaches the UI.
 
-Every `get-*-info` util first validates its input with `src/utils/validator.ts` and throws an `Error` with a fixed message. The tests assert on those message strings.
+A student's `index`, not their ID, is the key for everything else. `findGroupByStudentIndex` and `findTeacherByStudentIndex` (run by the routes) and `getExpEngSectionByStudentIndex` (run in the browser) each check whether the index falls in a `range.start..range.end` (or `studentStart..studentEnd`) window. `findSubjectByCode` merges duplicate subject rows that share a `code` into one subject with all their sections combined. Each `find*` lookup is in the same file as its `get-*-info` util.
+
+Every `get-*-info` util and `find*` lookup first validates its input with `src/utils/validator.ts` and throws an `Error` with a fixed message. The tests assert on those message strings.
 
 ### Session / auth
 
@@ -52,7 +56,7 @@ CEDT students (`cohort.cedtProgram`) skip the group and subject lookups. The sub
 
 Content that changes each year or semester lives in `src/config/`. Change it there rather than hardcoding it in pages:
 
-- `cohort.ts`: batch number, academic year, the student ID regex prefix/suffix (used by `validateStudentId`), the `isSystemOpen` toggle and open date shown on the landing page, the current `semester`, and from that the EXP ENG subject code/name and `showGroupSubject`.
+- `cohort.ts`: batch number, academic year, the student ID prefix whitelist `studentIdPrefixes` and the `studentIdSuffix` (both used by `validateStudentId`, which pads each prefix with digits so the ID is 10 digits long; an 8-digit prefix therefore allows exactly one student), the `isSystemOpen` toggle and open date shown on the landing page, the current `semester`, and from that the EXP ENG subject code/name and `showGroupSubject`.
 - `announcement-posts.ts`: Instagram posts and images for `/announcement` (images are in `src/assets/images/announcement/`).
 - `map-markers.ts`: building markers on the schedule page map.
 
@@ -72,5 +76,5 @@ Content that changes each year or semester lives in `src/config/`. Change it the
 - Formatting: there are two Prettier configs. `.prettierrc` takes precedence over `.prettierrc.json` and matches the code: 4-space indent, single quotes, JSX single quotes, `trailingComma: es5`, and the tailwind class-sorting plugin.
 - Import alias: `@/*` maps to `src/*`. Shared types are in `src/types/*.d.ts`, and `Program` is a union of Thai program names.
 - Tests (Vitest + jsdom + Testing Library, set up in `setup-tests.js`) live in `__tests__/` folders next to the code. They mock `../data-fetcher` with `vi.mock`.
-- Test fixtures hardcode student IDs, so they break whenever `cohort.studentIdPrefix` changes. Currently `get-student-info.test.ts` fails because it uses `663…` IDs while the cohort prefix is `693`. It also mocks the fetcher to return an array, but `/api/students/[id]` returns a single student.
+- Tests that depend on yearly config should not break at rollover. `validator.test.ts` and `get-student-info.test.ts` mock `@/config/cohort` with their own `studentIdPrefixes`, and the EXP ENG test data in `get-subject-info.test.ts` reads `cohort.expEngSubjectCode`. Follow the same pattern rather than hardcoding the current batch or semester.
 - The CI workflow (`.github/workflows/or-test.yml`) uses `--filter=or69`, but the `name` in `package.json` is `or`.
