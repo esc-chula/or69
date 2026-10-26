@@ -30,7 +30,7 @@ export const announcementPosts: AnnouncementPost[] = [
         caption: `📣 กำหนดการการลงทะเบียนเรียนสำหรับนิสิตปัจจุบัน ภาคการศึกษาปลาย ปีการศึกษา ${cohort.academicYearTH} ⚙️📚`,
     },
     {
-        instagramUrl: 'https://www.instagram.com/p/DZ4UYDEElbb/?img_index=2',
+        instagramUrl: 'https://www.instagram.com/p/De8iRGtSAdx/?img_index=1',
         images: [registrationImage],
         scrollable: false,
         caption:
